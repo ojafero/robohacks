@@ -1,0 +1,21 @@
+.textbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.textbox label {
+  font-size: 1.6rem;
+  display: inline-block;
+  text-align: right;
+  min-width: 8rem;
+}
+
+.textbox textarea {
+  height: 18.7rem;
+  width: 46rem;
+  background-color: #d9d9d9;
+  border: 1px solid black;
+  resize: none;
+}
