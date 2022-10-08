@@ -1,26 +1,53 @@
 import styles from "./Home.module.css";
-import React, { useState } from "react";
-import { Layout, Row, Typography, Col, Spin, Alert } from "antd";
+import React, { useEffect, useState } from "react";
+import {
+  Layout,
+  Row,
+  Button,
+  Typography,
+  Col,
+  Spin,
+  Alert,
+  Input,
+  Space,
+  Card,
+  Steps,
+} from "antd";
+
 import TextBox from "../../components/TextBox/TextBox";
-import Button from "../../components/UI/Button";
+
 import axios from "axios";
 import "antd/lib/spin/style/index.css";
+import { socket } from "../../context/socket";
 
 const { Header, Footer, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
-
+const { Search } = Input;
+const { Step } = Steps;
 const Home = (props) => {
   const [url, setUrl] = useState("");
   const [summaryText, setSummaryText] = useState("");
   const [transcriptionText, setTranscriptionText] = useState("");
   const [processing, setProcessing] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
+  const [current, setCurrent] = useState(0);
+
+  const next = () => {
+    setCurrent(current + 1);
+  };
+
+  const prev = () => {
+    setCurrent(current - 1);
+  };
 
   const inputChangeHandler = (event) => {
     setUrl(event.target.value);
   };
+
   const submitButtonClickHandler = async () => {
     if (url.length >= 10) {
       setProcessing(true);
+      setButtonClicked(true);
       await postYoutubeLink(url);
     }
   };
@@ -31,17 +58,27 @@ const Home = (props) => {
       console.log(data);
       setSummaryText(data.summary);
       setTranscriptionText(data.sentences);
-      setProcessing(false);
+      setButtonClicked(false);
+      setTimeout(() => setProcessing(false), 2000);
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    socket.on("loading", next);
+    socket.on("connect", next);
+    return () => {
+      socket.off("loading", next);
+      socket.off("connect", next);
+    };
+  });
+
   return (
     <Layout className={styles.home}>
-      <Header>
-        <Row className={styles.header}>
-          <Col className={styles.headerCol}>
+      <Header className={styles.header}>
+        <Row>
+          <Col xs={6} md={1}>
             <svg
               width="38"
               height="28"
@@ -55,34 +92,93 @@ const Home = (props) => {
                 stroke="white"
               />
             </svg>
+          </Col>
+          <Col xs={12} md={6}>
             <Title className={styles.headerText}>Glance</Title>
           </Col>
         </Row>
       </Header>
+
       <Content className={styles.content}>
-        <div>
-          <h1 className={styles.title}>Submit Youtube Link</h1>
-        </div>
-        <div>
-          <p>Subtitle...</p>
-        </div>
-        <div className={styles.inputContainer}>
-          <input
-            className={styles.urlInput}
-            type="url"
-            onChange={inputChangeHandler}
-          ></input>
-          <Button onClick={submitButtonClickHandler}>Check Content</Button>
-        </div>
+        <Row justify="center" className={styles.title}>
+          <Col>
+            <Title level={2}>Submit Youtube Link</Title>
+          </Col>
+        </Row>
 
-        <div className={styles.loader}>
-          {processing && <Spin tip="Processing..." />}{" "}
-        </div>
+        <Row justify="center" className={styles.subtitle}>
+          <Col>
+            <Text>Subtitle...</Text>
+          </Col>
+        </Row>
 
-        <TextBox labeltext="Summary" text={summaryText} />
-        <TextBox labeltext="Transcription" text={transcriptionText} />
+        <Row className={styles.inputContainer}>
+          <Col xs={2} md={8}></Col>
+          <Col xs={20} md={10}>
+            <Search
+              placeholder="input search text"
+              allowClear
+              enterButton="Search"
+              size="large"
+              onChange={inputChangeHandler}
+              onSearch={submitButtonClickHandler}
+            />
+          </Col>
+          <Col xs={2} md={6}></Col>
+        </Row>
+        <Row className={styles.loader}>
+          <Col xs={2} md={4}></Col>
+          <Col xs={20} md={16}>
+            {(buttonClicked || processing) && (
+              <Steps size="small" current={current}>
+                <Step title="Dowloading" />
+                <Step title="Transcribing" />
+                <Step title="Transcript is being filtered for harmful content" />
+                <Step title="A summary is being generated" />
+              </Steps>
+            )}
+          </Col>
+          <Col xs={2} md={4}></Col>
+        </Row>
+
+        {summaryText && transcriptionText && (
+          <>
+            <Row className={styles.infoPane}>
+              <Col xs={0} md={6}></Col>
+              <Col xs={6} md={2}>
+                <Text>Summary</Text>
+              </Col>
+              <Col xs={18} md={10}>
+                <Card>{summaryText}</Card>
+              </Col>
+              <Col xs={0} md={6}></Col>
+            </Row>
+
+            <Row className={styles.infoPane}>
+              <Col xs={0} md={6}></Col>
+              <Col xs={6} md={2}>
+                <Text>Transcription</Text>
+              </Col>
+              <Col xs={18} md={10}>
+                <Card>
+                  {transcriptionText &&
+                    transcriptionText.map((sentences, index) => {
+                      if (sentences.toxicity) {
+                        return (
+                          <span key={index} style={{ color: "red" }}>
+                            {sentences.sentence}
+                          </span>
+                        );
+                      }
+                      return <spam key={index}> {sentences.sentence} </spam>;
+                    })}
+                </Card>
+              </Col>
+              <Col xs={0} md={6}></Col>
+            </Row>
+          </>
+        )}
       </Content>
-      <Footer className={styles.footer} />
     </Layout>
   );
 };
