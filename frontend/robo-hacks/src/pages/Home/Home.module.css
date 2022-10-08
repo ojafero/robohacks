@@ -1,0 +1,55 @@
+.home {
+  display: grid;
+  grid-template-rows: 1fr 6fr 1fr;
+  font-size: 1.6rem;
+}
+
+.header {
+  width: 100vw;
+  height: 11.4rem;
+  background-color: #3943b7;
+  display: flex;
+  grid-row: 1;
+}
+.headerCol {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.headerText {
+  font-size: 2.4rem;
+  color: #ffffff;
+}
+
+.content {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.title {
+  font-size: 4rem;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.urlInput {
+  margin-left: 16rem;
+  width: 46rem;
+  height: 4.2rem;
+}
+.loader {
+}
+.footer {
+  width: 100vw;
+  height: 11.4rem;
+  padding: 2rem;
+  background-color: #000000;
+  grid-row: 3;
+  justify-self: end;
+}
