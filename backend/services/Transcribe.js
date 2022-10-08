@@ -29,7 +29,7 @@ class Transcribe {
       this.recognizer.recognized = (s, e) => {
         if (e.result.reason == this.sdk.ResultReason.RecognizedSpeech) {
           console.log(`RECOGNIZED: Text=${e.result.text}`);
-          transcript = transcript + e.result.text + " ";
+          transcript = transcript + e.result.text;
         } else if (e.result.reason == this.sdk.ResultReason.NoMatch) {
           console.log("NOMATCH: Speech could not be recognized.");
         }

@@ -5,6 +5,7 @@ const cors = require("cors");
 const { socket } = require("./utils/socket");
 const server = require("http").createServer(app);
 socket.init(server);
+
 const {
   youtubeTranscriberController,
 } = require("./controller/youtube-transcriber");
