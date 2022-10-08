@@ -7,9 +7,14 @@ const server = require("http").createServer(app);
 socket.init(server);
 const io = socket.get();
 let clientConnection = null;
+const {
+  youtubeTranscriberController,
+} = require("./controller/youtube-transcriber");
 
 app.use(cors());
 app.use(express.json());
+
+app.post("/api/transcribe", youtubeTranscriberController);
 
 io.on("connection", (client) => {
   clientConnection = client;
