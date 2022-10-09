@@ -54,7 +54,12 @@ const Home = (props) => {
 
   const postYoutubeLink = async (link) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/transcribe");
+      const { data } = await axios.post(
+        "http://localhost:5000/api/transcribe",
+        {
+          url: link.trim(),
+        }
+      );
       console.log(data);
       setSummaryText(data.summary);
       setTranscriptionText(data.sentences);
