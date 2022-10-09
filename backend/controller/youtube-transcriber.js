@@ -54,9 +54,6 @@ async function youtubeTestController(req, res) {
       console.log("found in cache");
       res.json(JSON.parse(cache));
     } else {
-      if (client) {
-        client.emit("loading", JSON.stringify({ message: loadingStates[0] }));
-      }
       const audioDownloader = new YtAudioDownloadService();
       const fileDestination = await audioDownloader.downloadAudio(videoUrl);
       if (client) {
