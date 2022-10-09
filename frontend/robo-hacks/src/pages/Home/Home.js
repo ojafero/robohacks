@@ -48,6 +48,7 @@ const Home = (props) => {
     if (url.length >= 10) {
       setProcessing(true);
       setButtonClicked(true);
+      setCurrent(0);
       await postYoutubeLink(url);
     }
   };
@@ -55,7 +56,7 @@ const Home = (props) => {
   const postYoutubeLink = async (link) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/transcribe",
+        "http://localhost:5000/test/transcribe",
         {
           url: link.trim(),
         }
@@ -111,20 +112,20 @@ const Home = (props) => {
             <Title level={2}>Submit Youtube Link</Title>
           </Col>
         </Row>
-
+        {/* 
         <Row justify="center" className={styles.subtitle}>
           <Col>
             <Text>Subtitle...</Text>
           </Col>
-        </Row>
+        </Row> */}
 
         <Row className={styles.inputContainer}>
           <Col xs={2} md={8}></Col>
           <Col xs={20} md={10}>
             <Search
-              placeholder="input search text"
+              placeholder="Enter youtube link"
               allowClear
-              enterButton="Search"
+              enterButton="Submit"
               size="large"
               onChange={inputChangeHandler}
               onSearch={submitButtonClickHandler}
