@@ -168,7 +168,7 @@ const Home = (props) => {
                 <Card>
                   {transcriptionText &&
                     transcriptionText.map((sentences, index) => {
-                      if (sentences.toxicity) {
+                      if (sentences.toxicityScore) {
                         return (
                           <span key={index} style={{ color: "red" }}>
                             {sentences.sentence}
