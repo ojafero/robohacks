@@ -17,7 +17,7 @@ import {
 import TextBox from "../../components/TextBox/TextBox";
 
 import axios from "axios";
-import "antd/lib/spin/style/index.css";
+
 import { socket } from "../../context/socket";
 
 const { Header, Footer, Content } = Layout;
@@ -54,12 +54,7 @@ const Home = (props) => {
 
   const postYoutubeLink = async (link) => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/test/transcribe",
-        {
-          url: link.trim(),
-        }
-      );
+      const { data } = await axios.post("http://localhost:5000/api/transcribe");
       console.log(data);
       setSummaryText(data.summary);
       setTranscriptionText(data.sentences);
@@ -137,7 +132,7 @@ const Home = (props) => {
           <Col xs={20} md={16}>
             {(buttonClicked || processing) && (
               <Steps size="small" current={current}>
-                <Step title="Dowloading" />
+                <Step title="Downloading" />
                 <Step title="Transcribing" />
                 <Step title="Transcript is being filtered for harmful content" />
                 <Step title="A summary is being generated" />
