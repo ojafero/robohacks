@@ -82,8 +82,8 @@ const Home = (props) => {
   return (
     <Layout className={styles.home}>
       <Header className={styles.header}>
-        <Row>
-          <Col xs={6} md={1}>
+        <Row className={styles.headerRow}>
+          <Col xs={6} md={1} className={styles.icon}>
             <svg
               width="38"
               height="28"
@@ -101,6 +101,7 @@ const Home = (props) => {
           <Col xs={12} md={6}>
             <Title className={styles.headerText}>Glance</Title>
           </Col>
+          <Col xs={6} md={17}></Col>
         </Row>
       </Header>
 
