@@ -7,8 +7,8 @@ const ClientRouter = () => {
   return (
     <SocketContext.Provider value={socket}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/landing" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
     </SocketContext.Provider>
   );
