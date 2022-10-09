@@ -54,7 +54,12 @@ const Home = (props) => {
 
   const postYoutubeLink = async (link) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/transcribe");
+      const { data } = await axios.post(
+        "http://localhost:5000/test/transcribe",
+        {
+          url: link.trim(),
+        }
+      );
       console.log(data);
       setSummaryText(data.summary);
       setTranscriptionText(data.sentences);
@@ -170,7 +175,7 @@ const Home = (props) => {
                           </span>
                         );
                       }
-                      return <spam key={index}> {sentences.sentence} </spam>;
+                      return <span key={index}> {sentences.sentence} </span>;
                     })}
                 </Card>
               </Col>
