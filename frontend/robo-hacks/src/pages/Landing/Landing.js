@@ -52,10 +52,10 @@ const Landing = () => {
           <Col xs={20} md={4}>
             <Image
               width="200"
-              height="600"
+              height="400"
               alt="Father and son in front of laptop"
               preview={false}
-              src="/images/dadSongLaptop.jpg"
+              src="/images/dadSonLaptop.jpg"
             />
           </Col>
           <Col xs={2} md={10} />
@@ -97,9 +97,9 @@ const Landing = () => {
             <Image
               width="200"
               height="600"
-              alt="Father and son in front of laptop"
+              alt="Mom and daugther playing on tablet"
               preview={false}
-              src="/images/dadSongLaptop.jpg"
+              src="/images/momDaughterTablet.jpg"
             />
           </Col>
           <Col className={styles.infoContainer} xs={12} md={10}>
@@ -125,9 +125,9 @@ const Landing = () => {
             <Image
               width="200"
               height="600"
-              alt="Father and son in front of laptop"
+              alt="Mom and daugther playing on tablet"
               preview={false}
-              src="/images/dadSongLaptop.jpg"
+              src="/images/momDaughterTablet.jpg"
             />
           </Col>
 
@@ -140,9 +140,9 @@ const Landing = () => {
             <Image
               width="200"
               height="600"
-              alt="Father and son in front of laptop"
+              alt="Mom and daugther playing on tablet"
               preview={false}
-              src="/images/dadSongLaptop.jpg"
+              src="/images/momDaughterTablet.jpg"
             />
           </Col>
           <Col className={styles.infoContainer} xs={12} md={10}>
