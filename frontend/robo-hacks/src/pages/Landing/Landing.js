@@ -92,8 +92,8 @@ const Landing = () => {
         </Row>
 
         <Row className={styles.infoRow}>
-          <Col xs={0} md={2} />
-          <Col xs={12} md={10}>
+          <Col xs={1} md={2} />
+          <Col xs={10} md={10}>
             <Image
               width="200"
               height="600"
@@ -109,11 +109,11 @@ const Landing = () => {
               massa mi. Aliquam in hendrerit urna.
             </Text>
           </Col>
-          <Col xs={0} md={2} />
+          <Col xs={1} md={2} />
         </Row>
 
         <Row className={styles.infoRow}>
-          <Col xs={0} md={2} />
+          <Col xs={1} md={2} />
           <Col className={styles.infoContainer} xs={12} md={10}>
             <Title level={3}>Fast Simple Secure</Title>
             <Text className={styles.infoContainerDesc}>
@@ -121,7 +121,7 @@ const Landing = () => {
               massa mi. Aliquam in hendrerit urna.
             </Text>
           </Col>
-          <Col xs={12} md={10}>
+          <Col xs={10} md={10}>
             <Image
               width="200"
               height="600"
@@ -131,12 +131,12 @@ const Landing = () => {
             />
           </Col>
 
-          <Col xs={0} md={2} />
+          <Col xs={1} md={2} />
         </Row>
 
         <Row className={styles.infoRow}>
-          <Col xs={0} md={2} />
-          <Col xs={12} md={10}>
+          <Col xs={1} md={2} />
+          <Col xs={10} md={10}>
             <Image
               width="200"
               height="600"
@@ -152,7 +152,7 @@ const Landing = () => {
               massa mi. Aliquam in hendrerit urna.
             </Text>
           </Col>
-          <Col xs={0} md={2} />
+          <Col xs={1} md={2} />
         </Row>
 
         <Row className={styles.smallTextRow}>
