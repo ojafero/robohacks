@@ -23,6 +23,11 @@
   margin-bottom: 4rem;
 }
 
+.mainPhoto {
+  width: 40vw !important;
+  height: 50vh !important;
+}
+
 .smallTextRow {
   margin-bottom: 1.2rem;
 }
@@ -34,9 +39,15 @@
   gap: 6rem;
   margin-bottom: 8rem;
 }
+.infoRowPhoto {
+  width: 50%;
+  height: 50%;
+}
 .textContainer {
   display: flex !important;
   justify-content: center !important;
+  text-align: center;
+  font-weight: 400;
 }
 .clickText {
   color: gray;
@@ -46,8 +57,15 @@
   flex-direction: column;
   gap: 0.6rem;
 }
+
 .infoContainerDesc {
-  max-width: 36ch;
+  max-width: 32ch;
+  font-size: 1.8rem;
+}
+.titleContainer {
+  display: flex !important;
+  gap: 0.6rem;
+  align-items: center;
 }
 .footer {
   width: 100vw;
